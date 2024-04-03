@@ -173,6 +173,9 @@ jobs:
             "${{ fromJson(needs.nf-test-changes.outputs.modules) }}",
           ]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # To retrieve the preceding commit.
       - name: setup python
         uses: actions/setup-python@v4
         with:
