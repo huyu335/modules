@@ -173,11 +173,6 @@ jobs:
             "${{ fromJson(needs.nf-test-changes.outputs.modules) }}",
           ]
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-          fetch-depth: 2 # To retrieve the preceding commit.
-      - run: ls modules/msk
       - name: setup python
         uses: actions/setup-python@v4
         with:
@@ -199,9 +194,11 @@ jobs:
           SW_NAME=$(echo $TEMP_NAME | sed 's/modules\///g')
           echo "SW_NAME=$SW_NAME" >> $GITHUB_ENV
           echo $SW_NAME
+      - run: ls modules/msk/pvmaf/tag/meta.yml
       - uses: jaywcjlove/github-action-read-file@main
         id: cat_file_module
         with:
+          branch: ${{ github.ref }}
           path: modules/msk/${{ env.SW_NAME }}/meta.yml
       - run: echo "${{ steps.cat_file_module.outputs.size }}"
       - name: Write Module yaml to temp
