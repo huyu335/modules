@@ -175,6 +175,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 2 # To retrieve the preceding commit.
       - name: setup python
         uses: actions/setup-python@v4
