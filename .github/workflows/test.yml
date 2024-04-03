@@ -194,7 +194,7 @@ jobs:
           SW_NAME=$(echo $TEMP_NAME | sed 's/modules\///g')
           echo "SW_NAME=$SW_NAME" >> $GITHUB_ENV
           echo $SW_NAME
-      - run: ls modules/msk/pvmaf/tag/meta.yml
+      - run: ls modules/msk/pvmaf/tag/
       - uses: jaywcjlove/github-action-read-file@main
         id: cat_file_module
         with:
